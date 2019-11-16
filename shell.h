@@ -10,5 +10,8 @@
 #include <fcntl.h>
 #include <signal.h>
 #include <errno.h>
+#include <limits.h>
+
+char *_strcpy(char *dest, char *src);
 
 #endif
