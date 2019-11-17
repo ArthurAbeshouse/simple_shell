@@ -14,7 +14,7 @@
 
 typedef struct list_s
 {
-	int n;
+	char *var;
 	struct list_s *next;
 } list_t;
 
