@@ -14,10 +14,10 @@ size_t print_list(list_t *h)
 
 	while (h)
 	{
-		if (h->str == NULL)
+		if (h->var == NULL)
 			printf("[0] (nil)\n");
 		else
-			printf("[%d] %s\n", h->len, h->str);
+			printf("[%d] %s\n", h->len, h->var);
 
 		h = h->next;
 		++i;
@@ -50,8 +50,8 @@ list_t *add_node_end(list_t **head, char *str)
 	first = malloc(sizeof(list_t));
 	if (first ==  NULL)
 		return (NULL);
-	first->str  = strdup(str);
-	first->len  = counter;
+	first->var = _strdup(str);
+	first->len = counter;
 
 	if (*head == NULL)
 	{
@@ -80,7 +80,7 @@ list_t *add_node_end(list_t **head, char *str)
   */
 int delete_nodeint_at_index(list_t **head, int index)
 {
-	unsigned int i;
+	int i;
 	list_t *current, *subsequent;
 
 	if (!head || !*head)
@@ -92,14 +92,15 @@ int delete_nodeint_at_index(list_t **head, int index)
 		free(current);
 		return (1);
 	}
-	for (i = 0; i < (index - 1); i++)
+	for (i = 0; i < (index - 1); ++i)
 	{
-		current = current->next;
 		if (current == NULL)
 			return (-1);
+		current = current->next;
 	}
 	subsequent = current->next;
 	current->next = subsequent->next;
+	free(subsequent->var);
 	free(subsequent);
 	return (1);
 }
@@ -113,7 +114,7 @@ void free_linked_list(list_t *head)
 	while (head)
 	{
 		head = head->next;
-		free(head->str);
+		free(head->var);
                 free(head);
 	}
 }
