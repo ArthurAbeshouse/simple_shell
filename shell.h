@@ -11,6 +11,7 @@
 #include <signal.h>
 #include <errno.h>
 #include <limits.h>
+#include <string.h>
 
 typedef struct list_s
 {
@@ -28,5 +29,11 @@ size_t print_list(list_t *h);
 list_t *add_node_end(list_t **head, char *str);
 int delete_nodeint_at_index(list_t **head, int index);
 void free_linked_list(list_t *head);
+int main(void);
+int loop(void);
+char *get_env(char **str);
+int parse(char **args);
+int lsh_launch(char **args);
+int spec(char *argv);
 
 #endif
