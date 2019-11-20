@@ -19,8 +19,11 @@ int loop(void)
 		/*printf("%s", buff);*/
 
 		args = token(buff);
+		free(args);
 
 		spec(buff);
+
+		free(buff);
 	}
 	return (0);
 }
