@@ -7,8 +7,7 @@ int loop(void)
 {
 	char *buff;
 	size_t buff_size = 1024, read_count;
-	char *delim = " ";
-	char *token = NULL;
+	char **args = NULL;
 
 	while(1)
 	{
@@ -18,17 +17,13 @@ int loop(void)
 		write(STDOUT_FILENO, "$ ", 2);
 		read_count = getline(&buff, &buff_size, stdin);
 		/*printf("%s", buff);*/
-/*		token = malloc(sizeof(char *) * buff_size);
-                if (token == NULL)
-		return (0);*/
-		token = strtok(buff, delim);
-		while (token != NULL)
-		{
-			printf("%s\n", token);
-			token = strtok(NULL, delim);
-		}
+
+		args = token(buff);
+		free(args);
+
 		spec(buff);
-		/* spec(token); */
+
+		free(buff);
 	}
 	return (0);
 }

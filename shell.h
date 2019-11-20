@@ -31,9 +31,12 @@ int delete_nodeint_at_index(list_t **head, int index);
 void free_linked_list(list_t *head);
 int main(void);
 int loop(void);
+char **token(char *buff);
 char *get_env(char **str);
 int parse(char **args);
 int lsh_launch(char **args);
 int spec(char *argv);
+int fork(void);
+int _strlen(char *s);
 
 #endif
