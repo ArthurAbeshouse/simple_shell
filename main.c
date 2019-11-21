@@ -47,7 +47,7 @@ int main(int argc __attribute__((unused)), char **argv __attribute__((unused)), 
   for (j = 0; env[j] != NULL; j++)
 	  ;
 
-  savedEnvironment = malloc(sizeof(char *) * j);
+  savedEnvironment = malloc(sizeof(char *) * (j + 1));
   if (savedEnvironment == NULL)
   {
 	  perror("Malloc failed");
@@ -69,6 +69,5 @@ int _env(void)
 
   for (i = 0; savedEnvironment[i] != NULL; i++)
 	  _puts_recursion(savedEnvironment[i]);
-  
   return (0);
 }
