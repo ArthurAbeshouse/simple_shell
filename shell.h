@@ -29,7 +29,6 @@ size_t print_list(list_t *h);
 list_t *add_node_end(list_t **head, char *str);
 int delete_nodeint_at_index(list_t **head, int index);
 void free_linked_list(list_t *head);
-int main(void);
 int loop(void);
 char **token(char *buff);
 char *get_env(char **str);
@@ -38,5 +37,9 @@ int lsh_launch(char **args);
 int spec(char *argv);
 int fork(void);
 int _strlen(char *s);
+void _puts_recursion(char *s);
+int _putchar(char c);
+int _env(void);
+int main(int argc, char **argv, char **env);
 
 #endif
