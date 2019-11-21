@@ -13,6 +13,8 @@
 #include <limits.h>
 #include <string.h>
 
+/*extern char **environ;*/
+
 typedef struct list_s
 {
 	char *var;
