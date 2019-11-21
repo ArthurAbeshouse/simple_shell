@@ -9,5 +9,9 @@ int spec(char *argv)
 		exit(0);
 	}
 
+	if (_strcmp("env", argv) == 0)
+	{
+		_env();
+	}
 	return (0);
 }
