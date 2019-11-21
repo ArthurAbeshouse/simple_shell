@@ -38,5 +38,6 @@ int lsh_launch(char **args);
 int spec(char *argv);
 int fork(void);
 int _strlen(char *s);
+char *runCmd(char *cmd);
 
 #endif
