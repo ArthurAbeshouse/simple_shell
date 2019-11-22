@@ -1,8 +1,8 @@
 #include "shell.h"
 
-char **token(char *buff)
+char **token(char *buff, char *delim)
 {
-        char *delim = "\n ";
+/*        char *delim = "\n ";*/
         char **token = NULL;
         size_t i = 0, j, num_o_words = 0;
 

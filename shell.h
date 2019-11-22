@@ -20,6 +20,7 @@ typedef struct list_s
 	struct list_s *next;
 } list_t;
 
+extern char **environ;
 char *_strcpy(char *dest, char *src);
 int _strcmp(char *s1, char *s2);
 char *_strcat(char *dest, char *src);
@@ -30,7 +31,7 @@ list_t *add_node_end(list_t **head, char *str);
 int delete_nodeint_at_index(list_t **head, int index);
 void free_linked_list(list_t *head);
 int loop(void);
-char **token(char *buff);
+char **token(char *buff, char *delim);
 char *get_env(char **str);
 int parse(char **args);
 int lsh_launch(char **args);
@@ -42,5 +43,7 @@ int _putchar(char c);
 int _env(void);
 int main(int argc, char **argv, char **env);
 void ctrl_c();
+/*int checkBuiltIns(char *cmd);*/
+char *checkPaths(char *cmd);
 
 #endif

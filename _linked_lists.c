@@ -1,29 +1,4 @@
 #include "shell.h"
-/**
- * print_list - prints all elements of a list
- * @h: pointer to node struct
- * Return: number of nodes
- */
-
-size_t print_list(list_t *h)
-{
-	size_t i = 0;
-
-	if (h == NULL)
-		return (0);
-
-	while (h)
-	{
-		if (h->var == NULL)
-			printf("[0] (nil)\n");
-		else
-			printf("[%d] %s\n", h->len, h->var);
-
-		h = h->next;
-		++i;
-	}
-	return (i);
-}
 
 /**
  * *add_node_end - adds a new element at the end of a list

@@ -21,7 +21,7 @@ int loop(void)
       write(STDOUT_FILENO, "$ ", 2);
       read_count = getline(&buff, &buff_size, stdin);
 
-      args = token(buff);
+      args = token(buff, "\n ");
 
       spec(*args);
 
