@@ -10,10 +10,11 @@ int loop(void)
   char *buff;
   size_t buff_size = 1024, read_count;
   char **args = NULL;
-  int exec;
+  /*int exec;*/
 
   while(1)
     {
+      signal(SIGINT, ctrl_c); /* Ctrl C sends a SIGINT*/
       buff = malloc(sizeof(char) * buff_size);
       if (buff == NULL)
 	      return (0);
@@ -22,15 +23,14 @@ int loop(void)
 
       args = token(buff);
 
-      exec = spec(*args);
+/*      spec(*args);*/
+      
+
+      free(buff);
 
       free(args);
 
-      free(savedEnvironment);
-
       /*spec(buff);*/
-
-      free(buff);
 
     }
   return (0);
@@ -59,6 +59,8 @@ int main(int argc __attribute__((unused)), char **argv __attribute__((unused)), 
   savedEnvironment[i] = NULL;
 
   loop();
+
+  /*free(savedEnvironment);*/
 
   return (0);
 }

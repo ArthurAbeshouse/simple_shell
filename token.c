@@ -20,7 +20,10 @@ char **token(char *buff)
 		return (0);
 	token = malloc(sizeof(char *) * (num_o_words + 1));
 	if (token == NULL)
+	{
+		perror("Malloc failed");
                 return (0);
+	}
 	token[i] = strtok(buff, delim);
 	while (token[i] != NULL)
         {

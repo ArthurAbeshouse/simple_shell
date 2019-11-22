@@ -9,14 +9,14 @@
 int _strcmp(char *s1, char *s2)
 {
         int a;
-        
+
         if (s1 == NULL && s2 == NULL)
 	        return (0);
         else if (s1 != NULL && s2 == NULL)
 	        return (1);
         else if (s1 == NULL && s2 != NULL)
 	        return (1);
-        
+
         for (a = 0; s1[a] != '\0' && s2[a] != '\0'; ++a)
         {
                 if (s1[a] != s2[a])
