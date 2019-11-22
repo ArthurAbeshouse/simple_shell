@@ -15,8 +15,7 @@ int spec(char *argv)
 	}
 
 	else if (_strcmp("env", argv) == 0)
-	{
 		_env();
-	}
+
 	return (0);
 }

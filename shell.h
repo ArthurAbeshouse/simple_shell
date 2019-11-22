@@ -42,6 +42,5 @@ int _putchar(char c);
 int _env(void);
 int main(int argc, char **argv, char **env);
 void ctrl_c();
-int _execve();
 
 #endif

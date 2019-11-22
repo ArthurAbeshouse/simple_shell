@@ -23,8 +23,7 @@ int loop(void)
 
       args = token(buff);
 
-/*      spec(*args);*/
-      
+      spec(*args);
 
       free(buff);
 

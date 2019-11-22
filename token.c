@@ -15,7 +15,6 @@ char **token(char *buff)
 				++j;
 		}
 	}
-	/*printf("%zu\n", num_o_words);*/
 	if (buff == NULL)
 		return (0);
 	token = malloc(sizeof(char *) * (num_o_words + 1));
