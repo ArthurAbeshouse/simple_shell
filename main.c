@@ -3,6 +3,8 @@
  *
  */
 
+static char **savedEnviorment;
+
 int loop(void)
 {
 	char *buff;
@@ -32,9 +34,14 @@ int loop(void)
  *
  */
 
-int main(void)
+int main(int argc, char **argv, char **env)
 {
 	loop();
 
+	return (0);
+}
+
+int _env()
+{
 	return (0);
 }

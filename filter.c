@@ -1,13 +1,31 @@
 #include "shell.h"
 
-int spec(char *argv)
+int checkExists(char *argv)
 {
+	const char *builtins[] = {"ls", "cd", "exit"}
+	int i = 0;
 
-	if (_strcmp("exit", argv) == 0)
+	while (bultins[i])
 	{
-		free(argv);
-		exit(0);
+		if(_strcmp(builtins[i], argv) == 0)
+		{
+			printf("Found match at %d", i);
+			return (i);
+		}
 	}
 
-	return (0);
+	return (-1);
+}
+
+int systemfunc(char *argv)
+{
+	const char *buffer = "/bin/";
+	int result;
+
+	_strcat(argv, buffer);
+	result = access(buffer, F_OK);
+	if (result == 0)
+		printf("%s exists!", argv);
+	else
+		printf("Error! %s does not exist!", argv);
 }
