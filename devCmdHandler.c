@@ -73,14 +73,17 @@ char checkPaths(char *cmd)
 			/* Paths copied, continue to checking */
 
 			i = 0;
-			pathSize = _strlen(envBuffer[0]);
-			path = malloc(sizeof(char *) * (pathSize + cmdLen + 1));
+			/*pathSize = _strlen(envBuffer[0]);*/
+			/*path = malloc(sizeof(char *) * (pathSize + cmdLen + 1));*/
 			while (envBuffer[i] != NULL)
 			{
 				pathSize = 0;
 				pathSize = _strlen(cmd);
-				path = _realloc(path, , (sizeof(char *) * (pathSize + cmdLen + 1)));
-
+				/*path = _realloc(path, , (sizeof(char *) * (pathSize + cmdLen + 1)));*/
+				_strcpy(path, envBuffer[i]);
+				path = _strcat(path, cmd);
+				if (access(path, R_OK) != -1 && access(path, X_OK) != -1)
+					execSys(path);
 			}
 		}	
 
