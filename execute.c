@@ -29,13 +29,13 @@ char *checkPaths(char *cmd)
                                 path = _realloc(path, sizeof(char *) * _strlen(path), sizeof(char *) * (pathSize + cmdLen + 1));
                                 _strcpy(path, envBuffer[i]);
                                 path = _strcat(path, cmd);
-				if (access(path, R_OK) != -1 && access(path, X_OK) != -1)
-				    _puts_recursion(path);
+                                if (access(path, R_OK) != -1 && access(path, X_OK) != -1)
+                                    _puts_recursion(path);
                         }
                 }
 
         }
-	return (path);
+        return (path);
 }
 
 int commandChecker(char *cmd)
