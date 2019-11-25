@@ -7,30 +7,28 @@ static char **savedEnvironment;
 
 int loop(void)
 {
-  char *buff;
-  size_t buff_size = 1024, read_count;
-  char **args = NULL;
-  /*int exec;*/
+  char *buff = NULL, **args = NULL; /* buff = user command*/
+  size_t buff_size = 1024, read_count = 0;
 
   while(1)
     {
-      signal(SIGINT, ctrl_c); /* Ctrl C sends a SIGINT*/
-      buff = malloc(sizeof(char) * buff_size);
+      signal(SIGINT, ctrl_c); /* Ctrl C sends a SIGINT */
+      buff = malloc(sizeof(char *) * buff_size);
       if (buff == NULL)
 	      return (0);
       write(STDOUT_FILENO, "$ ", 2);
       read_count = getline(&buff, &buff_size, stdin);
+      if (read_count == '\0')
+	return (0);
 
       args = token(buff, "\n ");
 
-      spec(*args);
+      if (spec(args) == -1)
+	commandChecker(args);
 
       free(buff);
 
       free(args);
-
-      /*spec(buff);*/
-
     }
   return (0);
 }
@@ -69,6 +67,6 @@ int _env(void)
   int i;
 
   for (i = 0; savedEnvironment[i] != NULL; i++)
-	  _puts_recursion(savedEnvironment[i]);
+    _puts(savedEnvironment[i]);
   return (0);
 }

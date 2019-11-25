@@ -1,52 +1,31 @@
 #include "shell.h"
 
-char *checkPaths(char *cmd)
+int _execute(char **argv)
 {
-        int envIn = 0, pathSize = 0, i = 0;
-        int cmdLen = 0;
-        char **envBuffer;
-        char *path;
+  pid_t pid;
+  int status;
 
-        cmdLen = _strlen(cmd);
+  pid = fork();
 
-        while (environ[envIn] != NULL)
+  if (pid == 0)
+    {
+      if (execve(argv[0], argv, environ) == -1)
         {
-                /* Find paths, add paths to buffer */
-                if (environ[envIn][0] == 'P' && environ[envIn][1] == 'A' && environ[envIn][2] == 'T'
-                                && environ[envIn][3] == 'H' && environ[envIn][4] == '=')
-                {
-                        envBuffer = token(&environ[envIn][5], ":");
-
-                        /* Paths copied, continue to checking */
-
-                        i = 0;
-                        /*pathSize = _strlen(envBuffer[0]);*/
-                        /*path = malloc(sizeof(char *) * (pathSize + cmdLen + 1));*/
-                        while (envBuffer[i] != NULL)
-                        {
-                                pathSize = 0;
-                                pathSize = _strlen(cmd);
-                                path = _realloc(path, sizeof(char *) * _strlen(path), sizeof(char *) * (pathSize + cmdLen + 1));
-                                _strcpy(path, envBuffer[i]);
-                                path = _strcat(path, cmd);
-                                if (access(path, R_OK) != -1 && access(path, X_OK) != -1)
-                                    _puts_recursion(path);
-                        }
-                }
-
+          perror("Error");
+          exit(-1);
         }
-        return (path);
+    }
+  else if (pid < 0)
+    {
+      perror("chicken wing");
+      exit(-1);
+    }
+  else
+    {
+      /*      printf("it don't work\n");*/
+      wait(&status);
+      /*      printf("why?\n");*/
+    }
+  return (pid);
 }
 
-int commandChecker(char *cmd)
-{
-        if (spec(cmd) == 1)
-                return (1);
-        if (checkPaths(cmd) != NULL)
-                return (1);
-
-        _puts_recursion("\nCannot find command ");
-        _puts_recursion(cmd);
-        _puts_recursion(".");
-        return (-1);
-}
