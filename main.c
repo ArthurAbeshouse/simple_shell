@@ -12,6 +12,7 @@ int loop(void)
 {
 	char *buff = NULL, **args = NULL; /* buff = user command*/
 	size_t buff_size = 1024, read_count = 0;
+	int i = 0;
 
 	while (1)
 	{
@@ -24,6 +25,13 @@ int loop(void)
 		if (read_count == '\0')
 			return (0);
 
+		i = read_count;
+		if (i == EOF)
+		{
+			if ((isatty(STDIN_FILENO)) == 1)
+				write(1, "\n", 1);
+			exit(0);
+		}
 		args = token(buff, "\n ");
 
 		if (spec(args) == -1)

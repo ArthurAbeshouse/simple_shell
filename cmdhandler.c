@@ -104,7 +104,7 @@ int commandChecker(char **cmd)
 		}
 		else
 		{
-			_puts("\nCannot find command ");
+			perror("\nCannot find command ");
 			_puts(cmd[0]);
 			return (-1);
 		}
