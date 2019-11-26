@@ -1,5 +1,11 @@
 #include "shell.h"
 
+/**
+ * _strcount - counts the number of words
+ * @buf: input from token
+ * Return: an integer
+ */
+
 int _strcount(char *buf)
 {
 	int j, i = 0;

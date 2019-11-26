@@ -1,5 +1,12 @@
 #include "shell.h"
 
+/**
+ * cy - checks for the string "PATH="
+ * @toCheck: String to check
+ *
+ * Return: 0 on success, -1 on fail
+ */
+
 int cy(char *toCheck)
 {
 	if (toCheck[0] == 'P' && toCheck[1] == 'A')
@@ -14,6 +21,29 @@ int cy(char *toCheck)
 	}
 	return (-1);
 }
+
+/**
+ * checkAccess - Check access to a file
+ * @path: Path to file
+ *
+ * Return: 1 on success, 0 on fail
+ */
+
+int checkAccess(char *path)
+{
+	if (access(path, R_OK) != -1)
+		if (access(path, X_OK) != -1)
+			return (1);
+	return (0);
+}
+
+/**
+ * checkPaths - Check the enivornment's paths for a file
+ * @cmd: Array of inputs
+ *
+ * Return: Path to exec file, NULL on fail
+ */
+
 char **checkPaths(char **cmd)
 {
 	int eI = 0, pS = 0, i = 0, found = 0, cL = 0;
@@ -38,16 +68,12 @@ char **checkPaths(char **cmd)
 				_strcpy(path, envBuff[i]);
 				path = _strcat(path, "/");
 				path = _strcat(path, cmd[0]);
-				if (access(path, R_OK) != -1)
+				if (checkAccess(path) == 1)
 				{
-					if (access(path, X_OK) != -1)
-					{
-						cmd[0] = path;
-						free(envBuff);
-						eI = 0;
-						return (cmd);
-					}
-
+					cmd[0] = path;
+					free(envBuff);
+					eI = 0;
+					return (cmd);
 				}
 				else
 				{
@@ -60,6 +86,13 @@ char **checkPaths(char **cmd)
 	}
 	return (NULL);
 }
+
+/**
+ * commandChecker - Function handler
+ * @cmd: Array of inputs
+ *
+ * Return: -1 on error
+ */
 
 int commandChecker(char **cmd)
 {

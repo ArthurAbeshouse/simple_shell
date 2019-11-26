@@ -1,5 +1,11 @@
 #include "shell.h"
 
+/**
+ * _puts - change the values of ints
+ * @str: char type
+ * Description: takes the string and prints to standard output
+ */
+
 void _puts(char *str)
 {
 	int a;

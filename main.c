@@ -1,10 +1,13 @@
 #include "shell.h"
-/**
- *
- */
+
 
 static char **savedEnvironment;
 
+/**
+ * loop - Main shell loop
+ *
+ * Return: 0 (successful)
+ */
 int loop(void)
 {
 	char *buff = NULL, **args = NULL; /* buff = user command*/
@@ -33,22 +36,26 @@ int loop(void)
 }
 
 /**
+ * main - Starter function
+ * @argc: Unused
+ * @argv: Unused
+ * @env: Shell environment
  *
+ * Return: 0 (successful)
  */
 
-int main(int argc __attribute__((unused)), char **argv __attribute__((unused)), char **env)
+int main(int argc, char **argv, char **env)
 {
 	int i, j;
 
+	(void)argc;
+	(void)argv;
 	for (j = 0; env[j] != NULL; j++)
 		;
 
 	savedEnvironment = malloc(sizeof(char *) * (j + 1));
 	if (savedEnvironment == NULL)
-	{
-		perror("Malloc failed");
 		return (0);
-	}
 
 	for (i = 0; env[i] != NULL; i++)
 		savedEnvironment[i] = env[i];
@@ -56,10 +63,14 @@ int main(int argc __attribute__((unused)), char **argv __attribute__((unused)), 
 
 	loop();
 
-  /*free(savedEnvironment);*/
-
 	return (0);
 }
+
+/**
+ * _env - Print environment of the Shell
+ *
+ * Return: 0 (successful)
+ */
 
 int _env(void)
 {

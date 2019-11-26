@@ -1,5 +1,12 @@
 #include "shell.h"
 
+/**
+ * token - tokenizes a string and returns an array of tokens
+ * @buff: user's command
+ * @delim: char to split str with (e.g. "\n")
+ * Return: an array of tokens (e.g. {"ls", "-l", "\0"})
+ */
+
 char **token(char *buff, char *delim)
 {
 	char **token = NULL;
