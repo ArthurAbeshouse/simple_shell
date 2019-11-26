@@ -3,7 +3,7 @@
 int _execute(char **argv)
 {
   pid_t pid;
-  int status;
+  int status = 0;
 
   pid = fork();
 
@@ -23,9 +23,8 @@ int _execute(char **argv)
   else
     {
       /*      printf("it don't work\n");*/
-      wait(&status);
+	    waitpid(pid, &status, 0);
       /*      printf("why?\n");*/
     }
   return (pid);
 }
-

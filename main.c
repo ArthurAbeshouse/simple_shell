@@ -7,30 +7,29 @@ static char **savedEnvironment;
 
 int loop(void)
 {
-  char *buff = NULL, **args = NULL; /* buff = user command*/
-  size_t buff_size = 1024, read_count = 0;
+	char *buff = NULL, **args = NULL; /* buff = user command*/
+	size_t buff_size = 1024, read_count = 0;
 
-  while(1)
-    {
-      signal(SIGINT, ctrl_c); /* Ctrl C sends a SIGINT */
-      buff = malloc(sizeof(char *) * buff_size);
-      if (buff == NULL)
-	      return (0);
-      write(STDOUT_FILENO, "$ ", 2);
-      read_count = getline(&buff, &buff_size, stdin);
-      if (read_count == '\0')
+	while (1)
+	{
+		signal(SIGINT, ctrl_c); /* Ctrl C sends a SIGINT */
+		buff = malloc(sizeof(char *) * buff_size);
+		if (buff == NULL)
+			return (0);
+		write(STDOUT_FILENO, "$ ", 2);
+		read_count = getline(&buff, &buff_size, stdin);
+		if (read_count == '\0')
+			return (0);
+
+		args = token(buff, "\n ");
+
+		if (spec(args) == -1)
+			commandChecker(args);
+
+		free(buff);
+		free(args);
+	}
 	return (0);
-
-      args = token(buff, "\n ");
-
-      if (spec(args) == -1)
-	commandChecker(args);
-
-      free(buff);
-
-      free(args);
-    }
-  return (0);
 }
 
 /**
@@ -39,34 +38,34 @@ int loop(void)
 
 int main(int argc __attribute__((unused)), char **argv __attribute__((unused)), char **env)
 {
-  int i, j;
+	int i, j;
 
-  for (j = 0; env[j] != NULL; j++)
-	  ;
+	for (j = 0; env[j] != NULL; j++)
+		;
 
-  savedEnvironment = malloc(sizeof(char *) * (j + 1));
-  if (savedEnvironment == NULL)
-  {
-	  perror("Malloc failed");
-	  return (0);
-  }
+	savedEnvironment = malloc(sizeof(char *) * (j + 1));
+	if (savedEnvironment == NULL)
+	{
+		perror("Malloc failed");
+		return (0);
+	}
 
-  for (i = 0; env[i] != NULL; i++)
-	  savedEnvironment[i] = env[i];
-  savedEnvironment[i] = NULL;
+	for (i = 0; env[i] != NULL; i++)
+		savedEnvironment[i] = env[i];
+	savedEnvironment[i] = NULL;
 
-  loop();
+	loop();
 
   /*free(savedEnvironment);*/
 
-  return (0);
+	return (0);
 }
 
 int _env(void)
 {
-  int i;
+	int i;
 
-  for (i = 0; savedEnvironment[i] != NULL; i++)
-    _puts(savedEnvironment[i]);
-  return (0);
+	for (i = 0; savedEnvironment[i] != NULL; i++)
+		_puts(savedEnvironment[i]);
+	return (0);
 }
