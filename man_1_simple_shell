@@ -1,0 +1,47 @@
+manpage for simple shell.
+.TH simple_shell 1 "25 November 2019" "1.0" "hsh man page"
+.SH NAME
+Simple shell - Interpret and process commands
+.SH SYNOPSIS
+hsh
+.SH DESCRIPTION
+The Holberton Simple Shell is a standard command intepreter which will print an output according to commands given.
+This shell was coded from scratch for the Holberton Low Level Programming Shell project.
+.SH OPTIONS
+hsh does not take options
+.SH EXAMPLE
+Entering
+.I ./hsh
+into the standard shell terminal will enter the simple shell, from there you may input commands that the simple shell will process independently of the parent shell.
+
+.I ./hsh
+.RS
+$ (Enters the shell)
+.RE
+
+.I $ ls
+.RS
+file1.c file2.c README.md
+.RE
+
+.I $ exit
+.RS
+Exits the simple shell.
+.RE
+
+.I $ ^C (Command + C)
+.RS
+$ foo bar^C
+.RE
+.RS
+$  (Quits the previous command)
+.RE
+
+.SH SEE ALSO
+sh(1)
+.SH BUGS
+ls has a path issue, causing it to not run consistently.
+.SH AUTHOR
+Tim Sninsky (timothys1738@gmail.com)
+
+Arthur Abeshouse (artieabe99@gmail.com)
