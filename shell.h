@@ -35,15 +35,18 @@ char **token(char *buff, char *delim);
 char *get_env(char **str);
 int parse(char **args);
 int lsh_launch(char **args);
-int spec(char *argv);
+int spec(char **argv);
 int fork(void);
 int _strlen(char *s);
-void _puts_recursion(char *s);
 int _putchar(char c);
 int _env(void);
 int main(int argc, char **argv, char **env);
-void ctrl_c();
-/*int checkBuiltIns(char *cmd);*/
-char *checkPaths(char *cmd);
+void ctrl_c(int n);
+void _puts(char *str);
+char **checkPaths(char **cmd);
+int commandChecker(char **cmd);
+int _execute(char **argv);
+int _strcount(char *buff);
+int cy(char *toCheck);
 
 #endif
