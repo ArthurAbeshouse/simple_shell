@@ -23,7 +23,7 @@ int _execute(char **argv)
 	}
 	else if (pid < 0)
 	{
-		perror("chicken wing");
+		perror("Error");
 		exit(-1);
 	}
 	else
